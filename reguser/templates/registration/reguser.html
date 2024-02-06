@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<section>
+    <div class="">
+        <form action="{% url 'reguser' %}" method="POST" >
+            {% csrf_token %}
+            {{ formuser }}
+            <button type="submit">Регистрация</button>
+            <p>{{ error }}</p>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+<div class="prof">
+    <h1>Профиль</h1>
+    <p>Имя: {{ user_profile.first_name }}</p>
+    <p>Фамилия: {{ user_profile.last_name }}</p>
+    <p>E-mail: {{ user_profile.mail }}</p>
+</div>
+    <a class="red" href="{% url 'profileup' %}">Редактировать профиль</a>
+
+</body>
+</html>
