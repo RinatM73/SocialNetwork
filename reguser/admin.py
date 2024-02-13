@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import UserProfile
+from .models import CustomUser
 
-@admin.register(UserProfile)
+@admin.register(CustomUser)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'first_name', 'last_name')
-    search_fields = ('user_username', 'first_name', 'last_name')
+    list_display = ('first_name', 'last_name')

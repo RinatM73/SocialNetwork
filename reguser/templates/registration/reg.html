@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Регистрация нового пользователя</h1>
+{% csrf_token %}
+  <form method="post">
+    <div class="">
+      {{ form.first_name.label }}
+      {{ form.first_name }}
+    </div>
+    <div class="">
+      {{ form.last_name.label }}
+      {{ form.last_name }}
+    </div>
+    <div class="">
+      {{ form.image_profile.label }}
+      {{ form.image_profile }}
+    </div>
+    <div class="">
+      {{ form.birth_date.label }}
+      {{ form.birth_date }}
+    </div>
+    <div class="">
+      {{ form.username.label }}
+      {{ form.username }}
+    </div>
+    <div class="">
+      {{ form.email.label }}
+      {{ form.email}}
+    </div>
+    <div class="">
+      {{ form.password1.label }}
+      {{ form.password1 }}
+      {{ form.password2.label }}
+      {{ form.password2 }}
+    </div>
+
+  {{ form.errors }}
+
+    <button type="submit">Зарегистрироваться</button>
+  </form>
+</body>
+</html>

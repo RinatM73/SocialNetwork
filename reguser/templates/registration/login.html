@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Вход</title>
+    <title>Title</title>
 </head>
 <body>
-<form action="{% url 'loginuser' %}" method="POST">
-    {% csrf_token %}
-    {{ form }}
+  <h1>Вход</h1>
+     {% csrf_token %}
+  <form method="post">
+     {{ form.username.label_tag }}
+     {{ form.username }}
+    <br>
+     {{ form.password.label_tag }}
+      {{ form.password }}
+    <br>
     <button type="submit">Войти</button>
-</form>
-{{ error }}
+  </form>
+
 </body>
 </html>

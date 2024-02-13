@@ -17,10 +17,10 @@
         <div class="header-right">
             <!-- Добавить код для проверки на авторизацию -->
             {% if request.user.username %}
-            <a href="{% url 'logoutuser' %}" class="link link-primary">Выход</a>
+            <a href="{% url 'logout' %}" class="link link-primary">Выход</a>
             {% else %}
-            <a href="{% url 'reguser' %}" class="link">Регистрация</a>
-            <a href="{% url 'loginuser' %}" class="link link-primary">Вход</a>
+            <a href="{% url 'register' %}" class="link">Регистрация</a>
+            <a href="{% url 'login' %}" class="link link-primary">Вход</a>
             <!-- Добавить код, если пользователь авторизировался -->
             {% endif %}
         </div>
