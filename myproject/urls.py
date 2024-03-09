@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home.views.home, name = 'home'),
     path('sign/', include('reguser.urls')),
+    path('', include('chat.urls')),
+    path('', include('friends.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header class="header">
+        <div class="wrapper header-wrapper">
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+            <nav>
+                <a href="{% url 'home' %}" class="link">Главная</a>
+                <a href="{% url 'profile' %}" class="link">Профиль</a>
+            </nav>
+            <div class="header-right">
+                <!-- Добавить код для проверки на авторизацию -->
+                {% if request.user.username %}
+                <a href="{% url 'friends' %}" class="link link-primary">Друзья</a>
+                <a href="{% url 'logout' %}" class="link link-primary">Выход</a>
+                {% else %}
+                <a href="{% url 'register' %}" class="link">Регистрация</a>
+                <a href="{% url 'login' %}" class="link link-primary">Вход</a>
+                <!-- Добавить код, если пользователь авторизировался -->
+                {% endif %}
+            </div>
+            <div>
+                <a href="{% url 'index' %}">Чат</a>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
