@@ -11,6 +11,9 @@ class CustomUser(AbstractUser):
     education = models.CharField(max_length=250, verbose_name="Образование", blank=True, null=True)
     job = models.CharField(max_length=250, verbose_name="Работа", blank=True, null=True)
     friends = models.ManyToManyField('CustomUser', blank=True)
+    videos = models.FileField(verbose_name="Видео", upload_to='video/', blank=True, null=True)
+    photos  = models.ImageField(verbose_name="Фото", upload_to='photo/', blank=True, null=True)
+
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

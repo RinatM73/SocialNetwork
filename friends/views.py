@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from friends.models import FriendRequest
 from reguser.models import CustomUser
@@ -8,7 +8,7 @@ from reguser.models import CustomUser
 def friends(request):
     allusers = CustomUser.objects.exclude(username=request.user)
     fr = FriendRequest.objects.filter(to_user=request.user)
-    return render(request, 'friends.html', {'allusers': allusers, 'fr': fr, 'infriends': infriends})
+    return render(request, 'friends.html', {'allusers': allusers, 'fr': fr})
 def send_request(request,id):
     from_user = request.user
     to_user = CustomUser.objects.get(id=id)
@@ -23,3 +23,7 @@ def accept_request(request,id):
     user2.friends.add(user1)
     frequest = FriendRequest.objects.filter(id=id).delete()
     return redirect('friends')
+
+def friends_det(request, pk):
+    friend = get_object_or_404(CustomUser, id=pk)
+    return render(request, 'friends_det.html', {'friend': friend})

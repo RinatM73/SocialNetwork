@@ -18,8 +18,8 @@
             <div class="header-right">
                 <!-- Добавить код для проверки на авторизацию -->
                 {% if request.user.username %}
-                <a href="{% url 'friends' %}" class="link link-primary">Друзья</a>
-                <a href="{% url 'logout' %}" class="link link-primary">Выход</a>
+                <a href="{% url 'friends' %}">Друзья</a>
+                <a href="{% url 'logout' %}">Выход</a>
                 {% else %}
                 <a href="{% url 'register' %}" class="link">Регистрация</a>
                 <a href="{% url 'login' %}" class="link link-primary">Вход</a>

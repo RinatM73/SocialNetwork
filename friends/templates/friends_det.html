@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="card_det">
+        <p class="">Имя: {{ friend.first_name }}</p>
+        <p class="">Фамилия: {{ friend.last_name }}</p>
+        <img class="" src="{{ friend.image_profile.url }}" alt="">
+        <p class="desc_det">О себе: {{ friend.about_me }}</p>
+    </div>
+    <div>
+        <a href="">Написать сообщение</a>
+    </div>
+</body>
+
+{% endblock %}

@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'daphne',
     'django.contrib.staticfiles',
     'home',
     'calls',
@@ -78,6 +77,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
+ASGI_APPLICATION = 'myproject.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -130,7 +139,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    os.path.join(BASE_DIR, 'static')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -138,11 +147,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-ASGI_APPLICATION = 'myproject.asgi.application'
-
-CHANNEL_LAYERS = {
-	"default": {
-		"BACKEND": "channels.layers.InMemoryChannelLayer"
-	}
-}

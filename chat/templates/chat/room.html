@@ -22,9 +22,8 @@
             <div class="column is-6 is-offset-3">
               <div class="box">
                 <div id="chat-messages">
-                  {% for ChatMessage in messages %}
-                  <b>{{ ChatMessage.username }}</b>:
-                  {{ ChatMessage.text }}
+                  {% for c in messages %}
+                    <b>{{ c.author }}</b>: {{ c.message }}
                   {% endfor %}
                 </div>
               </div>
@@ -58,6 +57,7 @@
         'ws://'
         + window.location.host
         + '/ws/'
+        + 'index/'
         + roomName
         + '/'
       );
@@ -67,7 +67,7 @@
       };
 
       chatSocket.onclose = function(e) {
-        console.error('The socket closed unexpectedly');
+        console.log('The socket closed unexpectedly');
       };
 
 
@@ -76,17 +76,14 @@
         const data = JSON.parse(e.data);
 
         if (data.message) {
-          document.querySelector('#chat-messages').innerHTML += ('' + data.username + ': ' + data.message + '');
+          document.querySelector('#chat-messages').innerHTML += ('<b>' + data.username + '</>b>: ' + data.message + '<br>');
         } else {
           alert('The message was empty!')
         }
       };
 
-      document.querySelector('#chat-message-input').focus();
-      document.querySelector('#chat-message-input').onclick = function(e) {
-        if (e.keyCode === 13) {
-          document.querySelector('#chat-message-submit').click();
-        }
+      chatSocket.onclose = function(e) {
+        console.log('The socket close unexpectadly');
       };
 
       document.querySelector('#chat-message-submit').onclick = function(e) {
