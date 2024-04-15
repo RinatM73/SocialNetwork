@@ -13,11 +13,12 @@
             </div>
             <nav>
                 <a href="{% url 'home' %}" class="link">Главная</a>
-                <a href="{% url 'profile' %}" class="link">Профиль</a>
+
             </nav>
             <div class="header-right">
                 <!-- Добавить код для проверки на авторизацию -->
                 {% if request.user.username %}
+                <a href="{% url 'profile' %}" class="link">Профиль</a>
                 <a href="{% url 'friends' %}">Друзья</a>
                 <a href="{% url 'logout' %}">Выход</a>
                 {% else %}

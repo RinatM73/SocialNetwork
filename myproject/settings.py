@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from channels.routing import ProtocolTypeRouter
+from django.core.asgi import get_asgi_application
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -26,7 +27,6 @@ SECRET_KEY = 'django-insecure-hu^l$qlq+2acow0)^nqd3y9vzz%fyu2rlf9o8$0o&f7&c@u)8%
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -79,24 +79,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-
-
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-  'default': {
-     'ENGINE': 'djongo',
-        'NAME': 'SocialNetwork',
-}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_USER_MODEL = 'reguser.CustomUser'
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/home'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -124,7 +120,6 @@ TIME_ZONE = 'Europe/Samara'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
