@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% block content %}
-<body>
+<section id="friends_det" class="friends_det">
     <div class="card_det">
         <p class="">Имя: {{ friend.first_name }}</p>
         <p class="">Фамилия: {{ friend.last_name }}</p>
@@ -8,8 +8,8 @@
         <p class="desc_det">О себе: {{ friend.about_me }}</p>
     </div>
     <div>
-        <a href="{% url 'chat-page' %}">Написать сообщение</a>
+        <a href="{% url 'chat' %}">Написать сообщение</a>
     </div>
-</body>
+</section>
 
 {% endblock %}

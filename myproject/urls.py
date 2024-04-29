@@ -8,8 +8,8 @@ import home.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home.views.home, name = 'home'),
-    path('sign/', include('reguser.urls')),
+    path('', home.views.home, name='home'),
+    path('accounts/', include('reguser.urls')),
     path('', include('friends.urls')),
     path('', include('chat.urls')),
 ]

@@ -1,7 +1,8 @@
-from django.contrib.auth.decorators import login_required
 from django.urls import path
-from chat import views as chat_views, views
+from .views import *
 
 urlpatterns = [
-    path("chat/", chat_views.chatPage, name="chat-page"),
+    path('chat/', chat_view, name='chat'),
+    path('chat/<username>', get_or_create_chatroom, name="start-chat"),
+    path('chat/room/<chatroom_name>', chat_view, name="chatroom"),
 ]

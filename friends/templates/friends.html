@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% block content %}
-<body>
+<section id="friends" class="friends">
     <h1>
         <h2>Заявки в друзья</h2>
         {% for r in fr %}
@@ -8,12 +8,12 @@
         {% endfor %}
         <h2>Друзья</h2>
         {% for user in user.friends.all %}
-        <a href="{% url 'friends_det' user.id %}">{{ user }}</a>
+        <a href="{% url 'friends_det' user.id %}#friends_det">{{ user }}</a>
         {% endfor %}
         <h2>Другие пользователи</h2>
         {% for user in allusers %}
         <a href="{% url 'add-friend' user.id %}">{{ user }} +</a>
         {% endfor %}
     </h1>
-</body>
+</section>
 {% endblock %}

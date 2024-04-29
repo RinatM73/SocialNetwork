@@ -39,7 +39,7 @@ class UserLogin(LoginView):
 
 
 class ProfileView(TemplateView):
-    template_name = 'profile.html'
+    template_name = 'accounts/profile.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -53,7 +53,7 @@ class ProfileView(TemplateView):
 class ProfileUpdateView(UpdateView):
     model = CustomUser
     form_class = CustomUserChangeForm
-    template_name = 'sign/profile_update.html'
+    template_name = 'accounts/profile_update.html'
     success_url = reverse_lazy('profile')
     def form_valid(self, form):
         print(form.cleaned_data)

@@ -1,9 +1,14 @@
 from django.forms import ModelForm
-from chat.models import ChatMessage
+from django import forms
+from .models import *
 
 
-class MessageForm(ModelForm):
+class ChatMessageForm(ModelForm):
     class Meta:
         model = ChatMessage
-        fields = ['message']
-        labels = {'message': ""}
+        fields = ['text']
+        widgets = {
+            'text': forms.TextInput(
+                attrs={'placeholder': 'Введите сообщение ...', 'class': 'p-4 text-black',
+                       'autofocus': True}),
+        }

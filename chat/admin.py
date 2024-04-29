@@ -1,10 +1,6 @@
 from django.contrib import admin
-from .models import Chat, ChatMessage
+from .models import *
 # Register your models here.
-@admin.register(Chat)
-class ChatAdmin(admin.ModelAdmin):
-    list_display = ('chat_name', 'create_date')
 
-@admin.register(ChatMessage)
-class ChatMessageAdmin(admin.ModelAdmin):
-    list_display = ('author', 'date_time', 'chat')
+admin.site.register(ChatGroup)
+admin.site.register(ChatMessage)
