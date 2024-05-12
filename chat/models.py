@@ -1,5 +1,6 @@
 from reguser.models import CustomUser
 from django.db import models
+import shortuuid
 from django.conf import settings
 import os
 
@@ -7,7 +8,7 @@ import os
 # Create your models here.
 
 class ChatGroup(models.Model):
-    group_name = models.CharField(max_length=128, verbose_name="Имя группы", unique=True)
+    group_name = models.CharField(max_length=128, verbose_name="Имя группы", unique=True, default=shortuuid.uuid)
     users_online = models.ManyToManyField(CustomUser, related_name='online_in_groups', blank=True)
     members = models.ManyToManyField(CustomUser, related_name='chat_groups', blank=True)
     is_private = models.BooleanField(default=False)

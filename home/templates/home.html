@@ -28,6 +28,12 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+  <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- =======================================================
   * Template Name: Personal
   * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
@@ -87,9 +93,12 @@
   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{% static "assets/js/main.js" %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
 
   {% block content %}
+  {% endblock %}
+
+  {% block javascript %}
   {% endblock %}
 
 </body>
