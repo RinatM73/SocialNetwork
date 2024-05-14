@@ -8,7 +8,10 @@
         <p class="desc_det">О себе: {{ friend.about_me }}</p>
     </div>
     <div>
-        <a href="{% url 'start-chat' friend.username %}">Написать сообщение</a>
+        {% if profile.user != user %}
+            <a href="{% url 'start-chat' friend.username %}">Написать сообщение</a>
+        {% endif %}
+
     </div>
 </section>
 

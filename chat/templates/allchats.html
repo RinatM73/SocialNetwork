@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<section id="allchats" class="allchats">
+    {% for ch in pubchat %}
+    <div>
+        <a href="{% url 'chat' %}#chat">{{ ch.group_name }}</a>
+    </div>
+    {% endfor %}
+    {% for chatroom in user.chat_groups.all %}
+        {% if chatroom.is_private %}
+            {% for member in chatroom.members.all %}
+                {% if member != user %}
+                <div>
+                <a href="{% url 'chatroom' chatroom.group_name %}#chatroom">{{ member.first_name }} {{ member.last_name }}</a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</section>
+
+{% endblock %}

@@ -6,7 +6,7 @@ from .models import *
 
 
 @login_required
-def chat_view(request, chatroom_name='Общий чат'):
+def chat_view(request, chatroom_name='public-chat'):
     chat_group = get_object_or_404(ChatGroup, group_name=chatroom_name)
     chat_messages = chat_group.chat_messages.all()[:30]
     form = ChatMessageForm()
@@ -48,13 +48,12 @@ def get_or_create_chatroom(request, username):
         return redirect('chat')
 
     other_user = CustomUser.objects.get(username=username)
-    my_chatrooms = request.user.chat_groups.filter(is_private=True)
+    my_private_chatrooms = request.user.chat_groups.filter(is_private=True)
 
-    if my_chatrooms.exists():
-        for chatroom in my_chatrooms:
+    if my_private_chatrooms.exists():
+        for chatroom in my_private_chatrooms:
             if other_user in chatroom.members.all():
-                chatroom = chatroom
-                break
+                return redirect('chatroom', chatroom.group_name)
             else:
                 chatroom = ChatGroup.objects.create(is_private=True)
                 chatroom.members.add(other_user, request.user)
@@ -63,5 +62,11 @@ def get_or_create_chatroom(request, username):
         chatroom.members.add(other_user, request.user)
 
     return redirect('chatroom', chatroom.group_name)
+
+def all_chats(request):
+    pubchat = ChatGroup.objects.filter(is_private=False)
+    prchats = ChatGroup.objects.filter(is_private=True)
+
+    return render(request, 'allchats.html', {'pubchat': pubchat, 'prchats': prchats})
 
 
