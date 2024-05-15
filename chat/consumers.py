@@ -13,8 +13,6 @@ class ChatConsumer(WebsocketConsumer):
         self.chatroom_name = self.scope['url_route']['kwargs']['chatroom_name']
         self.chatroom = get_object_or_404(ChatGroup, group_name=self.chatroom_name)
 
-        # self.channel_layer.group_add()
-
         async_to_sync(self.channel_layer.group_add)(
             self.chatroom_name, self.channel_name
         )
@@ -43,12 +41,6 @@ class ChatConsumer(WebsocketConsumer):
             author=self.user,
             group=self.chatroom
         )
-        context = {
-            'message': message,
-            'user': self.user,
-        }
-        html = render_to_string("chat_message_p.html", context=context)
-        self.send(text_data=html)
         event = {
             'type': 'message_handler',
             'message_id': message.id,
@@ -62,6 +54,7 @@ class ChatConsumer(WebsocketConsumer):
         context = {
             'message': message,
             'user': self.user,
+            'chat_group': self.chatroom
         }
         html = render_to_string("chat_message_p.html", context=context)
         self.send(text_data=html)
