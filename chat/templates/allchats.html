@@ -12,7 +12,7 @@
             {% for member in chatroom.members.all %}
                 {% if member != user %}
                 <div>
-                <a href="{% url 'chatroom' chatroom.group_name %}#chatroom">{{ member.first_name }} {{ member.last_name }}</a>
+                <a href="{% url 'chatroom' chatroom.group_name %}#chat">{{ member.first_name }} {{ member.last_name }}</a>
                 </div>
                 {% endif %}
             {% endfor %}
