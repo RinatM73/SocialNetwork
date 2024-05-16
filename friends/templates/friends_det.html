@@ -9,7 +9,7 @@
     </div>
     <div>
         {% if profile.user != user %}
-            <a href="{% url 'start-chat' friend.username %}">Написать сообщение</a>
+            <a href="{% url 'start-chat' friend.username %}#chat">Написать сообщение</a>
         {% endif %}
 
     </div>

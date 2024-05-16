@@ -12,7 +12,9 @@
         {% endfor %}
         <h2>Другие пользователи</h2>
         {% for user in allusers %}
-        <a href="{% url 'add-friend' user.id %}">{{ user }} +</a>
+            {% if user != request.user %}
+                <a href="{% url 'add-friend' user.id %}">{{ user }} +</a>
+            {% endif %}
         {% endfor %}
     </h1>
 </section>
