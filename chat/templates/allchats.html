@@ -8,6 +8,15 @@
     </div>
     {% endfor %}
     {% for chatroom in user.chat_groups.all %}
+        {% if chatroom.groupchat_name %}
+            {% for member in chatroom.members.all %}
+                <div>
+                    <a href="{% url 'chatroom' chatroom.group_name %}#chat">{{ chatroom.groupchat_name|slice:":30" }}</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    {% for chatroom in user.chat_groups.all %}
         {% if chatroom.is_private %}
             {% for member in chatroom.members.all %}
                 {% if member != user %}
@@ -18,6 +27,9 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+    <div>
+        <a href="{% url 'new-groupchat' %}#create_groupchat">Создать групповой чат</a>
+    </div>
 </section>
 
 {% endblock %}

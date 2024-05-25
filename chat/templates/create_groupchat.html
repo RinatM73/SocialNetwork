@@ -1,0 +1,11 @@
+{% extends 'home.html' %}
+{% block content %}
+<section id="create_groupchat" class="create_groupchat">
+    <h1>Новый групповой чат</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="mt-2" type="submit">Создать чат</button>
+    </form>
+</section>
+{% endblock %}

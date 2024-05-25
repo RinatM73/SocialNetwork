@@ -27,3 +27,4 @@ def accept_request(request,id):
 def friends_det(request, pk):
     friend = get_object_or_404(CustomUser, id=pk)
     return render(request, 'friends_det.html', {'friend': friend})
+

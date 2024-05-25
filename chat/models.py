@@ -9,6 +9,8 @@ import os
 
 class ChatGroup(models.Model):
     group_name = models.CharField(max_length=128, verbose_name="Имя группы", unique=True, default=shortuuid.uuid)
+    groupchat_name = models.CharField(max_length=128, null=True, blank=True)
+    admin = models.ForeignKey(CustomUser, related_name='groupchats', blank=True, null=True, on_delete=models.SET_NULL)
     users_online = models.ManyToManyField(CustomUser, related_name='online_in_groups', blank=True)
     members = models.ManyToManyField(CustomUser, related_name='chat_groups', blank=True)
     is_private = models.BooleanField(default=False)
