@@ -20,13 +20,13 @@ body {
 body::before {
   content: "";
   position: fixed;
-  background: black;
+  background: #040404;
   background-size: cover;
   left: 0;
   right: 0;
   top: 0;
   height: 100vh;
-  z-index: -1;
+  z-index: -10;
 }
 
 @media (min-width: 1024px) {
@@ -175,11 +175,13 @@ h6 {
 
 #header.header-top .container {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  
 }
 
 #header.header-top .navbar {
-  margin: 0;
+  margin: 20px;
 }
 
 @media (max-width: 768px) {
@@ -485,38 +487,7 @@ section .container {
 /*--------------------------------------------------------------
 # Skills
 --------------------------------------------------------------*/
-.skills .progress {
-  height: 60px;
-  display: block;
-  background: none;
-  border-radius: 0;
-}
 
-.skills .progress .skill {
-  padding: 10px 0;
-  margin: 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  color: #fff;
-}
-
-.skills .progress .skill .val {
-  float: right;
-  font-style: normal;
-}
-
-.skills .progress-bar-wrap {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.skills .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: #18d26e;
-}
 
 /*--------------------------------------------------------------
 # Interests
@@ -1188,3 +1159,4 @@ section .container {
 .credits a:hover {
   color: #fff;
 }
+

@@ -1,12 +1,16 @@
 from django.contrib.auth import login
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, TemplateView, UpdateView
+
+from friends.views import friends
+from photo.models import Photo
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser
 from django.contrib.auth.views import LoginView
+from datetime import date
 
 # Create your views here.
 
@@ -58,3 +62,11 @@ class ProfileUpdateView(UpdateView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
+
+def random_friends(request):
+    random_friends = CustomUser.objects.all()
+    return render(request, 'profile.html', {'random_friends': random_friends})
+
+def count_friends(request):
+    count_friends = CustomUser.objects.all()
+    return render(request, 'profile.html', {'count_friends': count_friends})

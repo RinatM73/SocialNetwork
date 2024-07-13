@@ -1,21 +1,51 @@
 {% extends 'home.html' %}
 {% block content %}
-<section id="friends" class="friends">
-    <h1>
-        <h2>Заявки в друзья</h2>
-        {% for r in fr %}
-        <a href="{% url 'accept' r.id %}">accept {{ r.from_user }}</a>
-        {% endfor %}
-        <h2>Друзья</h2>
-        {% for user in user.friends.all %}
-        <a href="{% url 'friends_det' user.id %}#friends_det">{{ user }}</a>
-        {% endfor %}
+<body>
+    <section id="friends" class="friends">
+        <div class="container">
+<!--            {% for r in fr %}-->
+<!--            <a href="{% url 'accept' r.id %}">accept {{ r.from_user }}</a>-->
+<!--            {% endfor %}-->
+            <div class="section-title">
+                <a href="{% url 'friends' %}#friends"><h2>Заявки в друзья</h2></a>
+            </div>
+            <div class="row">
+                {% for r in fr %}
+                <div class="card col-4 mr-5 mb-5" style="width: 18rem; background: rgb(39, 41, 45)">
+                    <a href="{% url 'friends_det' user.id %}#friends_det"><img src="{{ r.from_user.image_profile.url }}" class="card-img-top" style="height: 250px; width: 100%; "></a>
+                    <div class="card-body">
+                        <h5 class="card-title text-white">{{ r.from_user }}</h5>
+                        <p class="card-text text-light">{{ r.from_user.country }} {{ r.from_user.city }}</p>
+                        <a href="{% url 'accept' r.id %}" class="btn btn-dark">Добавить</a>
+                        <a href="#" class="btn btn-dark">Отклонить</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="section-title">
+                <a href="{% url 'friends' %}#friends"><h2>Друзья</h2></a>
+            </div>
+            <div class="row">
+                {% for user in user.friends.all %}
+                <div class="card col-4 mr-5 mb-5" style="width: 18rem; background: rgb(39, 41, 45)">
+                    <a href="{% url 'friends_det' user.id %}#friends_det"><img src="{{ user.image_profile.url }}" class="card-img-top" style="height: 250px; width: 100%; "></a>
+                    <div class="card-body">
+                        <h5 class="card-title text-white">{{ user }}</h5>
+                        <p class="card-text text-light">{{ user.country }} {{ user.city }}</p>
+                        {% if profile.user != user %}
+                        <a href="{% url 'start-chat' user.username %}#chat" class="btn btn-dark">Написать cообщение</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         <h2>Другие пользователи</h2>
         {% for user in allusers %}
-            {% if user != request.user %}
-                <a href="{% url 'add-friend' user.id %}">{{ user }} +</a>
-            {% endif %}
+        {% if user != request.user %}
+        <a href="{% url 'add-friend' user.id %}">{{ user }} +</a>
+        {% endif %}
         {% endfor %}
-    </h1>
-</section>
+    </section>
+</body>
 {% endblock %}

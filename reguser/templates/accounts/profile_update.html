@@ -1,13 +1,10 @@
-{% extends 'base.html' %}
-{% block content %}
 <body>
+  <section id="profile_update" class="profile_update">
     <h1>Изменение пользователя</h1>
-  <form method="post" enctype='multipart/form-data'>
-    {% csrf_token %}
-    {{ form.as_p }}
-
+    <form method="post" enctype='multipart/form-data'>
+      {% csrf_token %}
+      {{ form.as_p }}
     <button type="submit">Сохранить</button>
   </form>
-
+  </section>
 </body>
-{% endblock %}

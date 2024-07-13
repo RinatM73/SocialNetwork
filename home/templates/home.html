@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Personal Bootstrap Template</title>
+  <title>{{ user.first_name }} {{ user.last_name }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,6 +26,7 @@
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
+  <link href="{% static 'style.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -33,6 +34,7 @@
   <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
   <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style type="text/tailwindcss">
         [x-cloak] {
             display: none !important;
@@ -142,38 +144,33 @@
   <!-- ======= Header ======= -->
   <header id="header">
     <div class="container">
-
-      <h1><a href="index.html">{{ user.first_name }} {{ user.last_name }}</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="video_call.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-      <h2>I'm a passionate <span>graphic designer</span> from New York</h2>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="{% url 'home' %}">Главная</a></li>
-          {% if request.user.username %}
-          <li><a class="nav-link" href="{% url 'profile' %}#about">Профиль</a></li>
-          <li><a class="nav-link" href="{% url 'friends' %}#friends">Друзья</a></li>
-          <li><a class="nav-link" href="{% url 'allchats' %}#allchats">Сообщения</a></li>
-          <li><a class="nav-link" href="#portfolio">Музыка</a></li>
-          <li><a class="nav-link" href="#contact">Фото</a></li>
-          <li><a class="nav-link" href="#contact">Видео</a></li>
-          <li><a class="nav-link" href="{% url 'logout' %}">Выход</a></li>
-          {% else %}
-          <li><a class="nav-link" href="{% url 'register' %}">Регистрация</a></li>
-          <li><a class="nav-link" href="{% url 'login' %}">Вход</a></li>
-          {% endif %}
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      </div>
-
+        <h1><a href="">{{ user.first_name }} {{ user.last_name }}</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="video_call.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
+        <h2>{{ user.status }}</h2>  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link active" href="{% url 'home' %}">Главная</a></li>
+            {% if request.user.username %}
+            <li><a class="nav-link" href="{% url 'profile' %}#about">Моя страница</a></li>
+            <li><a class="nav-link" href="{% url 'friends' %}#friends">Друзья</a></li>
+            <li><a class="nav-link" href="{% url 'allchats' %}#allchats">Сообщения</a></li>
+<!--            <li><a class="nav-link" href="#portfolio">Музыка</a></li>-->
+            <li><a class="nav-link" href="{% url 'photo' user.id %}#portfolio">Фото</a></li>
+<!--            <li><a class="nav-link" href="#contact">Видео</a></li>-->
+            <li><a class="nav-link" href="{% url 'logout' %}">Выход</a></li>
+            {% else %}
+            <li><a class="nav-link" href="{% url 'register' %}#reg">Регистрация</a></li>
+            <li><a class="nav-link" href="{% url 'login' %}#login">Вход</a></li>
+            {% endif %}
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->  
+        <div class="social-links">
+          <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        </div>
     </div>
   </header><!-- End Header -->
 

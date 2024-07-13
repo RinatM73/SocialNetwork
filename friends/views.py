@@ -24,7 +24,11 @@ def accept_request(request,id):
     frequest = FriendRequest.objects.filter(id=id).delete()
     return redirect('friends')
 
+
 def friends_det(request, pk):
     friend = get_object_or_404(CustomUser, id=pk)
     return render(request, 'friends_det.html', {'friend': friend})
+
+def friends_mess():
+    pass
 

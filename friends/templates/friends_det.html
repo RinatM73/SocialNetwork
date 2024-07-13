@@ -1,10 +1,11 @@
 {% extends 'home.html' %}
 {% block content %}
+<body></body>
 <section id="friends_det" class="friends_det">
     <div class="card_det">
         <p class="">Имя: {{ friend.first_name }}</p>
         <p class="">Фамилия: {{ friend.last_name }}</p>
-        <img class="" src="{{ friend.image_profile.url }}" alt="">
+        <img class="" src="{{ friend.image_profile.url }}" style="height: 300px; width: 300px">
         <p class="desc_det">О себе: {{ friend.about_me }}</p>
     </div>
     <div>
@@ -16,5 +17,4 @@
 
     </div>
 </section>
-
 {% endblock %}

@@ -13,6 +13,7 @@ urlpatterns = [
     path('', include('friends.urls')),
     path('', include('chat.urls')),
     path('', include('calls.urls')),
+    path('', include('photo.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

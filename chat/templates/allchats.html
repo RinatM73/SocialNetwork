@@ -1,35 +1,40 @@
 {% extends 'home.html' %}
 {% block content %}
 
-<section id="allchats" class="allchats">
-    {% for ch in pubchat %}
-    <div>
-        <a href="{% url 'chat' %}#chat">{{ ch.group_name }}</a>
-    </div>
-    {% endfor %}
-    {% for chatroom in user.chat_groups.all %}
-        {% if chatroom.groupchat_name %}
-            {% for member in chatroom.members.all %}
-                <div>
-                    <a href="{% url 'chatroom' chatroom.group_name %}#chat">{{ chatroom.groupchat_name|slice:":30" }}</a>
+<body>
+    <section id="allchats" class="allchats">
+        <div class="container">
+            <div class="section-title">
+                <a href=""><h2>Сообщения</h2></a>
+            </div>
+            {% for ch in pubchat %}
+            <div class="card" style="width: 50rem; background: rgb(39, 41, 45)">
+                <div class="card-body d-flex justify-content-around">
+                    <h5 class="card-title col-6 text-white fw-bold pt-2">
+                        <a href="{% url 'chat' %}#chat">{{ ch.group_name }}</a>
+                    </h5>
+                    <a href="{% url 'chat' %}#chat" class="btn btn-dark">Открыть</a>
                 </div>
+            </div>
             {% endfor %}
-        {% endif %}
-    {% endfor %}
-    {% for chatroom in user.chat_groups.all %}
-        {% if chatroom.is_private %}
-            {% for member in chatroom.members.all %}
-                {% if member != user %}
-                <div>
-                <a href="{% url 'chatroom' chatroom.group_name %}#chat">{{ member.first_name }} {{ member.last_name }}</a>
-                </div>
+            {% for chatroom in user.chat_groups.all %}
+                {% if chatroom.is_private %}
+                    {% for member in chatroom.members.all %}
+                        {% if member != user %}
+                        <div class="card" style="width: 50rem; background: rgb(39, 41, 45)">
+                            <div class="card-body d-flex justify-content-around">
+                              <h5 class="card-title col-6 text-white fw-bold pt-2">
+                                  <a href="{% url 'chatroom' chatroom.group_name %}#chat">{{ member.first_name }} {{ member.last_name }}</a>
+                              </h5>
+                              <a href="{% url 'chatroom' chatroom.group_name %}#chat" class="btn btn-dark">Открыть</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
-        {% endif %}
-    {% endfor %}
-    <div>
-        <a href="{% url 'new-groupchat' %}#create_groupchat">Создать групповой чат</a>
-    </div>
-</section>
+        </div>
+    </section>
+</body>
 
 {% endblock %}
